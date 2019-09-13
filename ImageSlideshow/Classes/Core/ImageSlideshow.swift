@@ -246,7 +246,13 @@ open class ImageSlideshow: UIView {
             scrollView.contentInsetAdjustmentBehavior = .never
         }
         addSubview(scrollView)
+        setupPageIndicator()
 
+        setTimerIfNeeded()
+        layoutScrollView()
+    }
+    
+    func setupPageIndicator() {
         if let pageIndicator = pageIndicator {
             addSubview(pageIndicator.view)
         }
@@ -254,9 +260,6 @@ open class ImageSlideshow: UIView {
         if let pageIndicator = pageIndicator as? UIControl {
             pageIndicator.addTarget(self, action: #selector(pageControlValueChanged), for: .valueChanged)
         }
-
-        setTimerIfNeeded()
-        layoutScrollView()
     }
 
     open override func removeFromSuperview() {
